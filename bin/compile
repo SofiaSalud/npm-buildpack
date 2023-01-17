@@ -15,3 +15,4 @@ export_env_dir "$ENV_DIR"
 
 echo "" >> $BUILD_DIR/.npmrc
 echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
+echo "@sofia-eng:registry=https://registry.npmjs.org" >> $BUILD_DIR/.npmrc
