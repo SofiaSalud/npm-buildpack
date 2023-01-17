@@ -19,6 +19,13 @@ echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
 echo "//registry.yarnpkg.com/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
 echo "registry=https://registry.npmjs.org" >> $BUILD_DIR/.npmrc
 
+ls $BUILD_DIR
+echo "==="
+ls $ENV_DIR
+echo "==="
+ls $BP_DIR
+echo "==="
+
 echo "Creating .yarnrc"
 echo "" >> $BUILD_DIR/.yarnrc
 echo "registry \"https://registry.npmjs.org\"" >> $BUILD_DIR/.yarnrc
