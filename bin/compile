@@ -13,6 +13,7 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 source $BP_DIR/lib/environment.sh
 export_env_dir "$ENV_DIR"
 
+echo "SETTING NPM TOKENS"
 echo "" >> $BUILD_DIR/.npmrc
 echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
 echo "//registry.yarnpkg.com/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
