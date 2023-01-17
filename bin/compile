@@ -21,10 +21,7 @@ echo "registry=https://registry.npmjs.org" >> $BUILD_DIR/.npmrc
 
 echo "Creating .yarnrc"
 echo "" >> $BUILD_DIR/.yarnrc
-echo "npmScopes:" >> $BUILD_DIR/.yarnrc
-echo "  sofia-eng:" >> $BUILD_DIR/.yarnrc
-echo "    npmRegistryServer: \"https://registry.npmjs.org\"" >> $BUILD_DIR/.yarnrc
-echo "    npmAuthToken: ${NPM_AUTH_TOKEN}" >> $BUILD_DIR/.yarnrc
+echo "registry \"https://registry.npmjs.org\"" >> $BUILD_DIR/.yarnrc
 
 cat $BUILD_DIR/.npmrc
 
