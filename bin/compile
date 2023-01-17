@@ -19,15 +19,12 @@ echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
 echo "//registry.yarnpkg.com/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
 echo "registry=https://registry.npmjs.org" >> $BUILD_DIR/.npmrc
 
-ls $BUILD_DIR
-echo "==="
-ls $ENV_DIR
-echo "==="
-ls $BP_DIR
-echo "==="
-
 echo "Creating .yarnrc"
 echo "" >> $BUILD_DIR/.yarnrc
 echo "registry \"https://registry.npmjs.org\"" >> $BUILD_DIR/.yarnrc
 
-sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $BUILD_DIR/yarn.lock
+if [ -d "$BUILD_DIR/packages" ]; then
+  sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $BUILD_DIR/$APP_BASE/yarn.lock
+else
+  sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $BUILD_DIR/yarn.lock
+fi
