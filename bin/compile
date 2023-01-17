@@ -14,9 +14,9 @@ source $BP_DIR/lib/environment.sh
 export_env_dir "$ENV_DIR"
 
 if [[ -v APP_BASE ]]; then
-  PROJ_DIR="$BUILD_DIR"
-else
   PROJ_DIR="$BUILD_DIR/$APP_BASE"
+else
+  PROJ_DIR="$BUILD_DIR"
 fi
 
 echo "Creating .npmrc"
