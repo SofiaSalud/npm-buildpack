@@ -23,6 +23,4 @@ echo "Creating .yarnrc"
 echo "" >> $BUILD_DIR/.yarnrc
 echo "registry \"https://registry.npmjs.org\"" >> $BUILD_DIR/.yarnrc
 
-cat $BUILD_DIR/.npmrc
-
-cat $BUILD_DIR/.yarnrc
+sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $BUILD_DIR/yarn.lock
