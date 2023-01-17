@@ -13,18 +13,20 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 source $BP_DIR/lib/environment.sh
 export_env_dir "$ENV_DIR"
 
+if [[ -z "${APP_BASE}" ]]; then
+  PROJ_DIR="$BUILD_DIR"
+else
+  PROJ_DIR="$BUILD_DIR/$APP_BASE"
+fi
+
 echo "Creating .npmrc"
-echo "" >> $BUILD_DIR/.npmrc
-echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
-echo "//registry.yarnpkg.com/:_authToken=$NPM_AUTH_TOKEN" >> $BUILD_DIR/.npmrc
-echo "registry=https://registry.npmjs.org" >> $BUILD_DIR/.npmrc
+echo "" >> $PROJ_DIR/.npmrc
+echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> $PROJ_DIR/.npmrc
+echo "//registry.yarnpkg.com/:_authToken=$NPM_AUTH_TOKEN" >> $PROJ_DIR/.npmrc
+echo "registry=https://registry.npmjs.org" >> $PROJ_DIR/.npmrc
 
 echo "Creating .yarnrc"
-echo "" >> $BUILD_DIR/.yarnrc
-echo "registry \"https://registry.npmjs.org\"" >> $BUILD_DIR/.yarnrc
+echo "" >> $PROJ_DIR/.yarnrc
+echo "registry \"https://registry.npmjs.org\"" >> $PROJ_DIR/.yarnrc
 
-if [ -d "$BUILD_DIR/packages" ]; then
-  sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $BUILD_DIR/$APP_BASE/yarn.lock
-else
-  sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $BUILD_DIR/yarn.lock
-fi
+sed -ie 's,registry.yarnpkg.com/@sofia,registry.npmjs.org/@sofia,' $PROJ_DIR/yarn.lock
